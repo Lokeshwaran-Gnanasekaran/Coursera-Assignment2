@@ -1,9 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="ShoppingListCheckOff">
   <head>
     <title>Shopping List Check Off</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+   
     <style>
       .emptyMessage {
         font-weight: bold;
@@ -22,34 +25,36 @@
       }
     </style>
   </head>
-<body ng-app="ShoppingListCheckOff">
+  
+  
+<body >
   <div class="container">
   <h1>Shopping List Check Off</h1>
 
   <div class="row">
 
     <!-- To Buy List -->
-    <div class="col-md-6" ng-controller="ToBuyController as tobuy">
+    <div ng-controller="ToBuyController as tobuy" class="col-md-6" >
      <h2>To Buy:</h2>
      <ul>
          <li ng-repeat="item in tobuy.items ">
              Buy {{ item.quantity }} of {{ item.name }}
-             <button class="btn btn-default" ng-click="tobuy.buy()"><span class="glyphicon glyphicon-ok"></span> Bought</button>
+             <button class="btn btn-default" ng-click="tobuy.buy($index)"><span class="glyphicon glyphicon-ok"></span> Bought</button>
             </li>
        <!-- <li>Buy 10 cookies <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button></li>
        <li>Buy 10 cookies <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button></li> -->
      </ul>
-     <div class="emptyMessage" ng-if="tobuy.items.length===0">Everything is bought!</div>
+     <div ng-if="tobuy.items.length===0" class="emptyMessage" >Everything is bought!</div>
     </div>
 
     <!-- Already Bought List -->
-    <div class="col-md-6" ng-controller="AlreadyBoughtController as tobought">
+    <div ng-controller="AlreadyBoughtController as tobought" class="col-md-6" >
      <h2>Already Bought:</h2>
      <ul>
        <li ng-repeat="item in tobought.items">Bought {{ item.quantity }} of {{ item.name }}</li>  
        <!-- <li>Bought 10 cookies</li> -->
      </ul>
-     <div class="emptyMessage" ng-if="tobought.items.length===0">Nothing bought yet.</div>
+     <div ng-if="tobought.items.length===0" class="emptyMessage" >Nothing bought yet.</div>
     </div>
   </div>
 </div>
